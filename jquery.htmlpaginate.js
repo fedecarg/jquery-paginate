@@ -7,7 +7,7 @@
  *   - http://www.gnu.org/licenses/gpl.html
  * 
  * Examples and documentation at: 
- *   - http://github.com/fedecarg/jquery_htmlpaginate
+ *   - http://github.com/fedecarg/jquery-htmlpaginate
  * 
  * Usage:
  * 
@@ -67,7 +67,7 @@
                 next();
             });
             
-            self.show();
+            self.show(currentPage);
         }
         
         show = function(page) {            
