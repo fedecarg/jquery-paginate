@@ -35,7 +35,7 @@
         
     	var self = this;
         var defaults = {
-            itemsPerPage: 10
+            itemsPerPage: 10,
             selector: {
             	next: self.selector+'-next',
             	previous: self.selector+'-previous',
