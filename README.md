@@ -40,11 +40,11 @@ Define an ID on the DOM element you want to paginate, for example: "listitems".
 </ul>
 ```
 
-If you have a huge table, maybe it will be displayed fully before the javascript at the bottom will be executed. To avoid this, you can set the table as hidden by default using css style:
+If you have a huge table, maybe it will be displayed fully before the javascript at the bottom will be executed. To avoid this, you can set the element as hidden by default:
 
 ```html
 <ul id="listitems" style="display:none">
-	...
+	
 </ul>
 ```
 
