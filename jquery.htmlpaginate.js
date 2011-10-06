@@ -30,20 +30,20 @@
  * 
  */
 (function($) {
-	
+    
 $.fn.htmlpaginate = function(options) {
-	
+    
     var HtmlPaginator = function(self, options) {
-    	
+        
         var defaults = {
             itemsPerPage: 10,
             selector: {
-            	next: self.selector+'-next',
-            	previous: self.selector+'-previous',
-            	pagination: self.selector+'-pagination'
+                next: self.selector+'-next',
+                previous: self.selector+'-previous',
+                pagination: self.selector+'-pagination'
             },
             cssClassName: {
-            	disabled: 'disabled'
+                disabled: 'disabled'
             }
         };
         var options = $.extend(defaults, options);
@@ -75,13 +75,13 @@ $.fn.htmlpaginate = function(options) {
         }
         
         var show = function(page) {
-        	currentPage = page;
+            currentPage = page;
             startPage = (currentPage - 1) * options.itemsPerPage;
             endPage = startPage + options.itemsPerPage;
             self.children().hide().slice(startPage, endPage).show();
 
-        	var disabled = options.cssClassName.disabled;
-        	$(options.selector.pagination + ' a').removeClass(disabled);
+            var disabled = options.cssClassName.disabled;
+            $(options.selector.pagination + ' a').removeClass(disabled);
             if (currentPage <= 1) {
                 $(options.selector.previous).addClass(disabled);
             } else if (currentPage == numberOfPages) {
