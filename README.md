@@ -6,7 +6,7 @@ Include jquery.min.js and jquery.paginate.min.js in your document.
 
 ```html
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
-<script type="text/javascript" src="js/jquery.htmlpaginate.js"></script>
+<script type="text/javascript" src="js/jquery.paginate.js"></script>
 ```
 
 Include a small css to skin the navigation links.
