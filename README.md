@@ -2,7 +2,6 @@
 
 To use this plugin you need to:
 
-----
 Include jquery.min.js and jquery.paginate.min.js in your document.
 
 ```html
@@ -10,7 +9,6 @@ Include jquery.min.js and jquery.paginate.min.js in your document.
 <script type="text/javascript" src="js/jquery.htmlpaginate.js"></script>
 ```
 
-----
 Include a small css to skin the navigation links.
 
 ```html
@@ -23,7 +21,6 @@ a.disabled {
 </style>
 ```
 
-----
 Define an ID on the DOM element you want to paginate, for example: "listitems".
 
 ```html
@@ -51,8 +48,7 @@ If you have a huge table, maybe it will be displayed fully before the javascript
 </ul>
 ```
 
-----
-Place a <div/> in the place you want to display the navigation links.
+Place a div in the place you want to display the navigation links.
 
 ```html
 <div id="listitems-pagination" style="display:none">
@@ -61,7 +57,6 @@ Place a <div/> in the place you want to display the navigation links.
 </div>
 ```
 
-----
 Include an initialization script at the bottom of your page like this:
 
 ```html
@@ -72,8 +67,7 @@ $(document).ready(function() {
 </script>
 ```
 
-----
-That's all. To download a demo [click here](http://).
+That's all. To download a demo [click here](https://github.com/fedecarg/jquery-htmlpaginate/zipball/master).
 
 
 
