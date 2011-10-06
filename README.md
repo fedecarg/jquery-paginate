@@ -1,15 +1,17 @@
-# Usage
+# jQuery Pagination Plugin
 
 To use this plugin you need to:
 
-1. Include jquery.min.js and jquery.paginate.min.js in your document.
+----
+Include jquery.min.js and jquery.paginate.min.js in your document.
 
 ```html
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
 <script type="text/javascript" src="js/jquery.htmlpaginate.js"></script>
 ```
 
-2. Include a small css to skin the navigation links.
+----
+Include a small css to skin the navigation links.
 
 ```html
 <style type="text/css">
@@ -21,7 +23,8 @@ a.disabled {
 </style>
 ```
 
-3. Define an ID on the DOM element you want to paginate, for example: "listitems".
+----
+Define an ID on the DOM element you want to paginate, for example: "listitems".
 
 ```html
 <ul id="listitems">
@@ -48,7 +51,8 @@ If you have a huge table, maybe it will be displayed fully before the javascript
 </ul>
 ```
 
-4. Place a <div/> in the place you want to display the navigation links.
+----
+Place a <div/> in the place you want to display the navigation links.
 
 ```html
 <div id="listitems-pagination" style="display:none">
@@ -57,7 +61,8 @@ If you have a huge table, maybe it will be displayed fully before the javascript
 </div>
 ```
 
-5. Include an initialization script at the bottom of your page like this:
+----
+Include an initialization script at the bottom of your page like this:
 
 ```html
 <script type="text/javascript">
@@ -67,6 +72,7 @@ $(document).ready(function() {
 </script>
 ```
 
+----
 That's all. To download a demo [click here](http://).
 
 
