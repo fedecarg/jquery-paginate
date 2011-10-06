@@ -41,6 +41,9 @@ $.fn.htmlpaginate = function(options) {
             	next: self.selector+'-next',
             	previous: self.selector+'-previous',
             	pagination: self.selector+'-pagination'
+            },
+            cssClassName: {
+            	disabled: 'disabled'
             }
         };
         var options = $.extend(defaults, options);
@@ -53,7 +56,7 @@ $.fn.htmlpaginate = function(options) {
             numberOfPages = Math.ceil(numberOfItems / options.itemsPerPage);
             if (numberOfPages > 1) {
                 $(options.selector.pagination).show();
-                $(options.selector.previous).removeAttr('href');
+                $(options.selector.previous).addClass(options.cssClassName.disabled);
             }
             
             self.children().hide();
@@ -71,20 +74,19 @@ $.fn.htmlpaginate = function(options) {
             self.show();
         }
         
-        var show = function(page) {            
-            startPage = (page - 1) * options.itemsPerPage;
+        var show = function(page) {
+        	currentPage = page;
+            startPage = (currentPage - 1) * options.itemsPerPage;
             endPage = startPage + options.itemsPerPage;
             self.children().hide().slice(startPage, endPage).show();
-            
-            $(options.selector.previous).attr('href', '#');
-            $(options.selector.next).attr('href', '#');
-            if (page <= 1) {
-                $(options.selector.previous).removeAttr('href');
-            } else if (page == numberOfPages) {
-                $(options.selector.next).removeAttr('href');
+
+        	var disabled = options.cssClassName.disabled;
+        	$(options.selector.pagination + ' a').removeClass(disabled);
+            if (currentPage <= 1) {
+                $(options.selector.previous).addClass(disabled);
+            } else if (currentPage == numberOfPages) {
+                $(options.selector.next).addClass(disabled);
             }
-            
-            currentPage = page;
         };
         
         var next = function() {
