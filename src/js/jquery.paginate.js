@@ -1,5 +1,5 @@
 /**
- * HTML Paginate - jQuery Plugin
+ * Paginate - jQuery Plugin
  * By Federico Cargnelutti <fedecarg@gmail.com>
  * 
  * Dual licensed under the MIT and GPL licenses:
@@ -25,15 +25,15 @@
  * </div>
  *     
  * <script type="text/javascript">
- * $('#items').htmlpaginate({itemsPerPage: 2});
+ * $('#items').paginate({itemsPerPage: 2});
  * </script>
  * 
  */
 (function($) {
     
-$.fn.htmlpaginate = function(options) {
+$.fn.paginate = function(options) {
     
-    var HtmlPaginator = function(self, options) {
+    var Paginator = function(self, options) {
         
         var defaults = {
             itemsPerPage: 10,
@@ -105,6 +105,6 @@ $.fn.htmlpaginate = function(options) {
         return this;
     }
     
-    return new HtmlPaginator(this, options);
+    return new Paginator(this, options);
 };
 })(jQuery);
