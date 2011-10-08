@@ -21,7 +21,7 @@ a.disabled {
 </style>
 ```
 
-Define an ID on the DOM element you want to paginate, for example: "listitems".
+Define an ID on the element you want to paginate, for example: "listitems".
 
 ```html
 <ul id="listitems">
@@ -40,7 +40,7 @@ Define an ID on the DOM element you want to paginate, for example: "listitems".
 </ul>
 ```
 
-If you have a huge table, maybe it will be displayed fully before the javascript at the bottom will be executed. To avoid this, you can set the element as hidden by default:
+If you have a more than 10 child elements and you want to avoid displaying them before the javascript is executed, you can set the element as hidden by default:
 
 ```html
 <ul id="listitems" style="display:none">
