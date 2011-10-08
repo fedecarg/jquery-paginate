@@ -67,7 +67,7 @@ $(document).ready(function() {
 </script>
 ```
 
-That's all. To download a demo [click here](https://github.com/fedecarg/jquery-htmlpaginate/zipball/master).
+That's all. To download a demo [click here](https://github.com/fedecarg/jquery-paginate/zipball/master).
 
 
 
