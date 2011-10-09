@@ -10,6 +10,10 @@ a.disabled {
     color: black;
     cursor: default;
 }
+#example1, #example3, #example3, #example4,
+#example1-pagination, #example2-pagination, #example3-pagination, #example4-pagination {
+    display: none;
+}
 </style>
 </head>
 <body>
@@ -23,7 +27,7 @@ a.disabled {
 	<br>
 	
 	<table cellpadding="0" cellspacing="0">
-	    <tbody id="tablerows" style="display:none">
+	    <tbody id="example1">
 	        <tr>
 	            <td class="content">Item 1</a></td>
 	            <td class="version">1.0</td>
@@ -62,9 +66,9 @@ a.disabled {
             </tr>
 	    </tbody>
 	</table>
-	<div id="tablerows-pagination" style="display:none">
-	    <a id="tablerows-previous" href="#">&laquo; Previous</a> 
-	    <a id="tablerows-next" href="#">Next &raquo;</a>
+	<div id="example1-pagination">
+	    <a id="example1-previous" href="#">&laquo; Previous</a> 
+	    <a id="example1-next" href="#">Next &raquo;</a>
 	</div>
 	
 	<br>
@@ -72,7 +76,7 @@ a.disabled {
 	<h2>Example 2</h2>
 	<br>
 	
-	<ul id="listitems" style="display:none">
+	<ul id="example2">
 	    <li>Item 1</li>
 	    <li>Item 2</li>
 	    <li>Item 3</li>
@@ -86,15 +90,17 @@ a.disabled {
 	    <li>Item 11</li>
 	    <li>Item 12</li>             
 	</ul>
-	<div id="listitems-pagination" style="display:none">
-	    <a id="listitems-previous" href="#">&laquo; Previous</a> 
-	    <a id="listitems-next" href="#">Next &raquo;</a> 
+	<div id="example2-pagination">
+	    <a id="example2-previous" href="#">&laquo; Previous</a> 
+	    <a id="example2-next" href="#">Next &raquo;</a> 
 	</div>
+	
+	<br>
 	
     <h2>Example 3</h2>
     <br>
 	
-	<div id="paragraphs">
+	<div id="example3">
 		<p>Item 1</p>
 		<p>Item 2</p>
 		<p>Item 3</p>
@@ -146,20 +152,41 @@ a.disabled {
 		<p>Item 49</p>
 		<p>Item 50</p>
     </div>
-    <div id="paragraphs-pagination" style="display:none">
-        <a id="paragraphs-previous" href="#">&laquo; Previous</a> 
-        <a id="paragraphs-next" href="#">Next &raquo;</a> 
+    <div id="example3-pagination">
+        <a id="example3-previous" href="#">&laquo; Previous</a> 
+        <a id="example3-next" href="#">Next &raquo;</a> 
+    </div>
+    
+    <br>
+    
+    <h2>Example 4</h2>
+    
+    <ul id="example4"></ul>
+    <div id="example4-pagination">
+        <a id="example4-previous" href="#">&laquo; Previous</a> 
+        <a id="example4-next" href="#">Next &raquo;</a> 
     </div>
     
 </div><!-- /container -->
+
+<a href="http://github.com/fedecarg/jquery-paginate"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/abad93f42020b733148435e2cd92ce15c542d320/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub"></a>
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
 <script type="text/javascript" src="js/jquery.paginate.js"></script>
 <script type="text/javascript">
 $(document).ready(function()    {
-	$('#tablerows').paginate({itemsPerPage: 2});
-	$('#listitems').paginate({itemsPerPage: 3});
-	$('#paragraphs').paginate({itemsPerPage: 10});
+	$('#example1').paginate({itemsPerPage: 2});
+	$('#example2').paginate({itemsPerPage: 3});
+	$('#example3').paginate({itemsPerPage: 10});
+
+	$.getJSON('data.json', function(data) {
+		var items = [];
+		$.each(data.items, function(i, item) {
+			items.push('<li>' + item + '</li>');
+		});
+		$('#example4').append(items.join(''));
+		$('#example4').paginate({itemsPerPage: 10});
+	});
 });
 </script>
 </body>
