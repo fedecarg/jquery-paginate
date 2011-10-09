@@ -69,6 +69,9 @@ $(document).ready(function() {
 
 That's all. To download a demo [click here](https://github.com/fedecarg/jquery-paginate/zipball/master).
 
+# Demo
+
+http://fedecarg.github.com/jquery-paginate
 
 
 
