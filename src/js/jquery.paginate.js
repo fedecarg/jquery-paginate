@@ -37,33 +37,59 @@ $.fn.paginate = function(options) {
         
         var defaults = {
             itemsPerPage: 10,
+            showPageNumbers: false,
+            paginationDisabling: true,
             selector: {
                 next: self.selector+'-next',
                 previous: self.selector+'-previous',
-                pagination: self.selector+'-pagination'
+                pagination: self.selector + '-pagination',
+                numberdisplay: self.selector + '-numberdisplay'
             },
             cssClassName: {
                 disabled: 'disabled'
             }
         };
-        var options = $.extend(defaults, options);
+        options = $.extend(defaults, options);
         var currentPage = 1;
         var numberOfPages = 1;
         var numberOfItems = 0;
+        var paginationDisabling = options.paginationDisabling;
         
         var init = function() {
             numberOfItems = self.children().size();
             numberOfPages = Math.ceil(numberOfItems / options.itemsPerPage);
             if (numberOfPages > 1) {
+                if (options.showPageNumbers === true) {
+            	    $(options.selector.numberdisplay).show();
+
+                    for (var i = 1; i <= numberOfPages; i++) {
+                	    $(options.selector.numberdisplay).append('<a class="js-pagenumber js-page' + i + '" href="javascript:void(0);">' + i + '</a>');
+                    }
+
+                    $('.js-pagenumber').bind('click', function () {
+                	    var selectedPage = $(this).text();
+                        if (selectedPage != currentPage) {
+                        	show(selectedPage);
+                        }
+                    });
+
+                    $('.js-pagenumber').wrap('<li />');
+
+                    // Set the current page to be active
+                    var activePage = '.js-page' + currentPage;
+                    $(activePage).addClass('active'); 
+                }
+
                 $(options.selector.pagination).show();
-                $(options.selector.previous).addClass(options.cssClassName.disabled);
+                if (paginationDisabling === true) {
+                    $(options.selector.previous).addClass(options.cssClassName.disabled);
+                }
             }
-            
             self.children().hide();
             self.children().slice(0, options.itemsPerPage).show();
             
             $(options.selector.previous).click(function(e){
-                e.preventDefault();
+            	e.preventDefault();
                 previous();
             });
             $(options.selector.next).click(function(e){
@@ -72,20 +98,27 @@ $.fn.paginate = function(options) {
             });
             
             self.show();
-        }
+        };
         
         var show = function(page) {
-            currentPage = page;
+            if (options.showPageNumbers === true) {
+                var activePage = '.js-page' + Number(page);
+                $('.js-pagenumber.active').removeClass('active');
+                $(activePage).addClass('active');
+            }
+        	currentPage = Number(page);
             startPage = (currentPage - 1) * options.itemsPerPage;
             endPage = startPage + options.itemsPerPage;
             self.children().hide().slice(startPage, endPage).show();
 
-            var disabled = options.cssClassName.disabled;
-            $(options.selector.pagination + ' a').removeClass(disabled);
-            if (currentPage <= 1) {
-                $(options.selector.previous).addClass(disabled);
-            } else if (currentPage == numberOfPages) {
-                $(options.selector.next).addClass(disabled);
+            if (paginationDisabling === true) {
+                var disabled = options.cssClassName.disabled;
+                $(options.selector.pagination + ' a').removeClass(disabled);
+                if (currentPage <= 1) {
+                    $(options.selector.previous).addClass(disabled);
+                } else if (currentPage == numberOfPages) {
+                    $(options.selector.next).addClass(disabled);
+                }
             }
         };
         
@@ -103,7 +136,7 @@ $.fn.paginate = function(options) {
         
         init();
         return this;
-    }
+    };
     
     return new Paginator(this, options);
 };

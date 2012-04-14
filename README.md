@@ -53,6 +53,7 @@ Place a div in the place you want to display the navigation links.
 ```html
 <div id="listitems-pagination" style="display:none">
     <a id="listitems-previous" href="#" class="disabled">&laquo; Previous</a> 
+    <ul id="listitems-numberdisplay" style="display:none"></ul>
     <a id="listitems-next" href="#">Next &raquo;</a> 
 </div>
 ```
