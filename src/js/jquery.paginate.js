@@ -39,6 +39,7 @@ $.fn.paginate = function(options) {
             itemsPerPage: 10,
             showPageNumbers: false,
             paginationDisabling: true,
+            limitVisiblePages: -1,
             selector: {
                 next: self.selector+'-next',
                 previous: self.selector+'-previous',
@@ -59,26 +60,8 @@ $.fn.paginate = function(options) {
             numberOfItems = self.children().size();
             numberOfPages = Math.ceil(numberOfItems / options.itemsPerPage);
             if (numberOfPages > 1) {
-                if (options.showPageNumbers === true) {
-            	    $(options.selector.numberdisplay).show();
 
-                    for (var i = 1; i <= numberOfPages; i++) {
-                	    $(options.selector.numberdisplay).append('<a class="js-pagenumber js-page' + i + '" href="javascript:void(0);">' + i + '</a>');
-                    }
-
-                    $('.js-pagenumber').bind('click', function () {
-                	    var selectedPage = $(this).text();
-                        if (selectedPage != currentPage) {
-                        	show(selectedPage);
-                        }
-                    });
-
-                    $('.js-pagenumber').wrap('<li />');
-
-                    // Set the current page to be active
-                    var activePage = '.js-page' + currentPage;
-                    $(activePage).addClass('active'); 
-                }
+                calculatePagination();
 
                 $(options.selector.pagination).show();
                 if (paginationDisabling === true) {
@@ -89,7 +72,7 @@ $.fn.paginate = function(options) {
             self.children().slice(0, options.itemsPerPage).show();
             
             $(options.selector.previous).click(function(e){
-            	e.preventDefault();
+                e.preventDefault();
                 previous();
             });
             $(options.selector.next).click(function(e){
@@ -100,17 +83,50 @@ $.fn.paginate = function(options) {
             self.show();
         };
         
+        var calculatePagination = function() {
+
+            if (options.showPageNumbers === true) {
+                $(options.selector.numberdisplay).empty();
+                $(options.selector.numberdisplay).show();       
+
+                    if (options.limitVisiblePages + currentPage > numberOfPages) {
+                        for (var i = numberOfPages - options.limitVisiblePages + 1; i <= numberOfPages; i++) {
+                                $(options.selector.numberdisplay).append('<a class="js-pagenumber js-page' + i + '" href="javascript:void(0);">' + i + '</a>');
+                            }
+                    } else {
+                        for (var i = currentPage; i <= numberOfPages; i++) {
+                            if (i < options.limitVisiblePages + currentPage){
+                                $(options.selector.numberdisplay).append('<a class="js-pagenumber js-page' + i + '" href="javascript:void(0);">' + i + '</a>');
+                            }
+                        }
+                    }
+
+                    $('.js-pagenumber').bind('click', function () {
+                        var selectedPage = $(this).text();
+                        if (selectedPage != currentPage) {
+                            show(selectedPage);
+                        }
+                    });
+
+                    $('.js-pagenumber').wrap('<li />');
+                    // Set the current page to be active
+                    var activePage = '.js-page' + currentPage;
+                    $(activePage).addClass('active'); 
+                }
+
+            };
+
         var show = function(page) {
             if (options.showPageNumbers === true) {
                 var activePage = '.js-page' + Number(page);
                 $('.js-pagenumber.active').removeClass('active');
                 $(activePage).addClass('active');
             }
-        	currentPage = Number(page);
+            currentPage = Number(page);
             startPage = (currentPage - 1) * options.itemsPerPage;
             endPage = startPage + options.itemsPerPage;
             self.children().hide().slice(startPage, endPage).show();
-
+            calculatePagination();
             if (paginationDisabling === true) {
                 var disabled = options.cssClassName.disabled;
                 $(options.selector.pagination + ' a').removeClass(disabled);
