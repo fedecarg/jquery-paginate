@@ -67,6 +67,20 @@ $(document).ready(function() {
 </script>
 ```
 
+Outro exemplo:
+
+```html
+<script>
+  //call paginate
+  $('.products').paginate({
+    'perPage': 50
+  });
+  $('.products').paginate({
+    'scope': $('.product')
+  });
+</script>
+```
+
 To download a demo [click here](https://github.com/fedecarg/jquery-paginate/zipball/master).
 
 
