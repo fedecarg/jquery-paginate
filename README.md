@@ -1,12 +1,11 @@
-# jQuery Pagination Plugin
+# JS Pagination Script
 
-To use this plugin you need to:
+To use this script you need to:
 
-Include jquery.min.js and jquery.paginate.min.js in your document.
+Include paginate.min.js in your document.
 
 ```html
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
-<script type="text/javascript" src="js/jquery.paginate.js"></script>
+<script type="text/javascript" src="js/paginate.js"></script>
 ```
 
 Include a small css to skin the navigation links.
@@ -61,13 +60,12 @@ Include an initialization script at the bottom of your page like this:
 
 ```html
 <script type="text/javascript">
-$(document).ready(function() {
-	$('#listitems').paginate({itemsPerPage: 3});
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('listitems').paginate({itemsPerPage: 3});
 });
 </script>
 ```
 
-To download a demo [click here](https://github.com/fedecarg/jquery-paginate/zipball/master).
 
 
 
