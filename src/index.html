@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
-<title>HTML Paginate - jQuery Plugin</title>
+<title>JS Paginate</title>
 <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.3.0/bootstrap.min.css">
 <style type="text/css">
 a.disabled {
@@ -20,7 +20,7 @@ a.disabled {
 
 <div class="container">
 
-    <h1>jQuery Pagination Plugin</h1>
+    <h1>Pagination Plugin</h1>
     <hr>
     
 	<h2>Example 1</h2>
@@ -169,24 +169,28 @@ a.disabled {
     
 </div><!-- /container -->
 
-<a href="http://github.com/fedecarg/jquery-paginate"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/abad93f42020b733148435e2cd92ce15c542d320/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub"></a>
-
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
-<script type="text/javascript" src="js/jquery.paginate.js"></script>
+<script type="text/javascript" src="js/paginate.js"></script>
 <script type="text/javascript">
-$(document).ready(function()    {
-	$('#example1').paginate({itemsPerPage: 2});
-	$('#example2').paginate({itemsPerPage: 3});
-	$('#example3').paginate({itemsPerPage: 10});
-
-	$.getJSON('data.json', function(data) {
-		var items = [];
-		$.each(data.items, function(i, item) {
-			items.push('<li>' + item + '</li>');
-		});
-		$('#example4').append(items.join(''));
-		$('#example4').paginate({itemsPerPage: 10});
-	});
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('example1').paginate({itemsPerPage: 2});
+    document.getElementById('example2').paginate({itemsPerPage: 3});
+    document.getElementById('example3').paginate({itemsPerPage: 10});
+    
+    fetch('data.json')
+        .then(response => response.json())
+        .then(data => {
+            const items = [];
+            data.items.forEach(function(item) {
+                items.push('<li>' + item + '</li>');
+            });
+            
+            const example4 = document.getElementById('example4');
+            example4.innerHTML += items.join('');
+            example4.paginate({itemsPerPage: 10});
+        })
+        .catch(error => {
+            console.error('Error loading data.json:', error);
+        });
 });
 </script>
 </body>
