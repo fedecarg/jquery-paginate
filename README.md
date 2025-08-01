@@ -2,7 +2,7 @@
 
 To use this script you need to:
 
-Include paginate.min.js in your document.
+Include `./js/paginate.js` in your HTML document:
 
 ```html
 <script type="text/javascript" src="js/paginate.js"></script>
