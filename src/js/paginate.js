@@ -1,6 +1,6 @@
 /**
- * Paginate - Vanilla JavaScript Plugin
- * Converted from jQuery version by Federico Cargnelutti <fedecarg@gmail.com>
+ * Paginate - Vanilla JavaScript
+ * 2011, by Federico Cargnelutti <fedecarg@gmail.com>
  * 
  * Dual licensed under the MIT and GPL licenses:
  *   - http://www.opensource.org/licenses/mit-license.php
